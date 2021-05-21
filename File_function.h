@@ -9,8 +9,10 @@
 namespace Filehandle
 {
 
-bool writeFile(Enter_details& edetails);
-bool readFile(Enter_details& rdetails);
+    bool writeFile(Enter_details &edetails);
+    bool readFile(Enter_details &rdetails);
+    bool deleteFile(Enter_details &ddeatils);
+    bool modifyFile(Enter_details &mdetails);
 
 };
 

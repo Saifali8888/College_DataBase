@@ -18,7 +18,7 @@ public:
     ~Enter_details(){};
     bool getuser_input(Enter_details &dept);
     bool readuser_details(Enter_details &rdetails);
-
+    bool modify_details(Enter_details &mdetails);
+    bool delete_details(Enter_details &ddetails);
 };
 #endif
-
