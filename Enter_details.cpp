@@ -14,7 +14,7 @@ using namespace std;
 
 bool Enter_details::getuser_input(Enter_details &dept)
 {
-    system("CLS");
+    system("clear");
     cout << "Enter the Department " << endl;
     cin.ignore(1000, '\n');
     getline(cin, dept.deptname);
@@ -35,6 +35,7 @@ bool Enter_details::getuser_input(Enter_details &dept)
     cout << "Please enter post " << endl;
     cin.ignore(1000, '\n');
     getline(cin, dept.post);
+    cout<<"Post "<<dept.post<<endl;
 
     cout << "Please enter Salary " << endl;
     cin >> dept.salary;
@@ -49,7 +50,7 @@ bool Enter_details::getuser_input(Enter_details &dept)
 
 bool Enter_details::readuser_details(Enter_details &rdetails)
 {
-    system("CLS");
+    system("clear");
     if (Filehandle::readFile(rdetails))
     {
         cout << "Name: " << rdetails.name << endl;

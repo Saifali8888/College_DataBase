@@ -1,13 +1,14 @@
 #include <iostream>
 #include <stdio.h>
-#include <vector>
 #include <string>
 #include <cstdio>
 #include <sstream>
-
-#include <windows.h>
+#include <algorithm>
+#include <strings.h>
+#include <bits/stdc++.h>
 
 #include "File_function.h"
+
 #define SPACECHARACTER " "
 using namespace std;
 
@@ -15,6 +16,9 @@ bool Filehandle::writeFile(Enter_details &edetails)
 {
     fstream filedata;
     filedata.open(edetails.deptname.c_str(), ios::app);
+    StringReplace_space(edetails.name);
+    StringReplace_space(edetails.subject);
+    StringReplace_space(edetails.post);
 
     filedata << edetails.name.c_str() << SPACECHARACTER << edetails.age << SPACECHARACTER << edetails.subject.c_str() << SPACECHARACTER << edetails.experience << SPACECHARACTER << edetails.post.c_str() << SPACECHARACTER << edetails.salary << endl;
     return true;
@@ -31,7 +35,8 @@ bool Filehandle::readFile(Enter_details &rdetails)
     {
         std::istringstream iss(myText);
         iss >> raw;
-        if (raw == rdetails.name)
+        StringReplace_underscore(raw);
+        if (!strcasecmp(raw.c_str(), rdetails.name.c_str()))
         {
             for (int i = 2; i <= 6; i++)
             {
@@ -44,6 +49,7 @@ bool Filehandle::readFile(Enter_details &rdetails)
 
                 case 3:
                     rdetails.subject = raw;
+                    StringReplace_underscore(rdetails.subject);
                     break;
 
                 case 4:
@@ -52,6 +58,7 @@ bool Filehandle::readFile(Enter_details &rdetails)
 
                 case 5:
                     rdetails.post = raw;
+                    StringReplace_underscore(rdetails.post);
                     break;
 
                 case 6:
@@ -62,12 +69,14 @@ bool Filehandle::readFile(Enter_details &rdetails)
                     break;
                 }
             }
+            return true;
         }
         else
         {
             continue;
         }
     }
+    return false;
 }
 
 bool Filehandle::deleteFile(Enter_details &ddetails)
@@ -80,7 +89,9 @@ bool Filehandle::deleteFile(Enter_details &ddetails)
 
     while (getline(filedata, myText))
     {
-        cout << myText << endl;
+        StringReplace_space(ddetails.name);
+        //transform(myText.begin(), myText.end(), myText.begin(), ::tolower);
+        //transform(ddetails.begin(), ddetails.end(), ddetails.begin(), ::tolower);
         if (myText.find(ddetails.name) != std::string::npos)
         {
             continue;
@@ -103,7 +114,7 @@ bool Filehandle::modifyFile(Enter_details &mdetails)
     readFile(mdetails);
     deleteFile(mdetails);
 
-    system("CLS");
+    system("clear");
     int select;
     cout << "Please Select\n"
          << "1. Name \n"
@@ -118,32 +129,32 @@ bool Filehandle::modifyFile(Enter_details &mdetails)
     switch (select)
     {
     case 1:
-        system("CLS");
+        system("clear");
         cout << "Please Enter Name " << endl;
         getline(cin, mdetails.name);
         break;
     case 2:
-        system("CLS");
+        system("clear");
         cout << "Please Enter Age " << endl;
         cin >> mdetails.age;
         break;
     case 3:
-        system("CLS");
+        system("clear");
         cout << "Please Enter Subject " << endl;
         getline(cin, mdetails.subject);
         break;
     case 4:
-        system("CLS");
+        system("clear");
         cout << "Please Enter Experience " << endl;
         cin >> mdetails.experience;
         break;
     case 5:
-        system("CLS");
+        system("clear");
         cout << "Please Enter Post " << endl;
         getline(cin, mdetails.post);
         break;
     case 6:
-        system("CLS");
+        system("clear");
         cout << "Please Enter Salary " << endl;
         cin >> mdetails.salary;
         break;
@@ -152,4 +163,14 @@ bool Filehandle::modifyFile(Enter_details &mdetails)
     }
     writeFile(mdetails);
     return true;
+}
+
+void Filehandle::StringReplace_space(string &Replace)
+{
+    std::replace(Replace.begin(), Replace.end(), ' ', '_');
+}
+
+void Filehandle::StringReplace_underscore(string &Replace)
+{
+    std::replace(Replace.begin(), Replace.end(), '_', ' ');
 }
