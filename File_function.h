@@ -14,6 +14,9 @@ namespace Filehandle
     bool deleteFile(Enter_details &ddeatils);
     bool modifyFile(Enter_details &mdetails);
 
+    void StringReplace_space(string& Replace);
+    void StringReplace_underscore(string& Replace);
+
 };
 
 #endif

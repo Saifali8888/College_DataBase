@@ -17,7 +17,7 @@ int main()
     Enter_details read_details;
     Enter_details modify_details;
     Enter_details deletes_details;
-    system("CLS");
+    system("clear");
     do
     {
 
@@ -35,7 +35,7 @@ int main()
             break;
 
         case 2:
-            system("CLS");
+            system("clear");
             cin.ignore(1000, '\n');
             cout << "Please Enter the Dept" << endl;
             getline(cin, read_details.deptname);
@@ -45,7 +45,7 @@ int main()
             break;
 
         case 3:
-            system("CLS");
+            system("clear");
             cin.ignore(1000, '\n');
             cout << "Please Enter the Dept" << endl;
             getline(cin, modify_details.deptname);
@@ -55,7 +55,7 @@ int main()
             break;
 
         case 4:
-            system("CLS");
+            system("clear");
             cin.ignore(1000, '\n');
             cout << "Please Enter the Dept" << endl;
             getline(cin, deletes_details.deptname);
@@ -67,8 +67,7 @@ int main()
         default:
             break;
         }
-        system("CLS");
-        cout << "Press 'Y' to re-enter \t" << " Press N to Terminate "<< endl;
+        cout << "Press Y to Re-enter \t" << " Press N to Terminate "<< endl;
         cin >> choice;
     } while (choice == 'y' || choice == 'Y');
 
